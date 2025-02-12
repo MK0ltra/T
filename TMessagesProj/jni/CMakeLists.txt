@@ -632,7 +632,7 @@ target_include_directories(${NATIVE_LIB} PUBLIC
         webrtc/)
 
 target_link_libraries(${NATIVE_LIB}
-        -Wl,--whole-archive rnnoise openh264 voipandroid -Wl,--no-whole-archive
+        -Wl,--whole-archive rnnoise openh264 voipandroid voicesmith -Wl,--no-whole-archive
         tgvoip
         tgcalls
         tgcalls_tp
