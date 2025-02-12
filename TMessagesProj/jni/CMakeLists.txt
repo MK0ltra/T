@@ -23,6 +23,9 @@ else()
     enable_language(ASM_NASM)
 endif()
 
+add_library(voicesmith STATIC IMPORTED)
+set_target_properties(voicesmith PROPERTIES IMPORTED_LOCATION ${CMAKE_HOME_DIRECTORY}/voicesmith/libs/${ANDROID_ABI}/libVoicesmith.a)
+
 add_library(avutil STATIC IMPORTED)
 set_target_properties(avutil PROPERTIES IMPORTED_LOCATION ${CMAKE_HOME_DIRECTORY}/ffmpeg/${ANDROID_ABI}/libavutil.a)
 
