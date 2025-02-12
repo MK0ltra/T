@@ -8,12 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [debug, release]
+        type: [release]
         include:
-          - type: debug
-            afat: assembleAfatDebug
-            name: ""
-            updates: 1
           - type: release
             afat: assembleAfatRelease
             name: " compressed"
@@ -31,9 +27,14 @@ jobs:
         with:
           ndk-version: r21e
           link-to-sdk: true
+      - name: Verify Java Version
+        run: |
+          java -version
+          javac -version
+
       - name: Prepare additional build number.
         env:
-          ADDITIONAL_BUILD: "123"
+          ADDITIONAL_BUILD: "1"
         run: |
           result=$((ADDITIONAL_BUILD / 10000))
           echo "ADDITIONAL_BUILD_NUMBER = $result should be between 0 and 10!"
