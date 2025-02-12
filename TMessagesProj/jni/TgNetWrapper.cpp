@@ -401,7 +401,9 @@ class Delegate : public ConnectiosManagerDelegate {
 
     void getHostByName(std::string domain, int32_t instanceNum, ConnectionSocket *socket) {
         jstring domainName = jniEnv[instanceNum]->NewStringUTF(domain.c_str());
-        jniEnv[instanceNum]->CallStaticVoidMethod(jclass_ConnectionsManager, jclass_ConnectionsManager_getHostByName, domainName, (jlong) (intptr_t) socket);
+	std::string empty;
+        jstring jsEmpty = jniEnv[instanceNum]->NewStringUTF(empty.c_str());
+        jniEnv[instanceNum]->CallStaticVoidMethod(jclass_ConnectionsManager, jclass_ConnectionsManager_getHostByName, domainName, (jlong) (intptr_t) socket, jsEmpty);
         jniEnv[instanceNum]->DeleteLocalRef(domainName);
     }
 
@@ -675,7 +677,7 @@ extern "C" int registerNativeTgNetFunctions(JavaVM *vm, JNIEnv *env) {
     if (jclass_ConnectionsManager_onProxyError == 0) {
         return JNI_FALSE;
     }
-    jclass_ConnectionsManager_getHostByName = env->GetStaticMethodID(jclass_ConnectionsManager, "getHostByName", "(Ljava/lang/String;J)V");
+    jclass_ConnectionsManager_getHostByName = env->GetStaticMethodID(jclass_ConnectionsManager, "getHostByName", "(Ljava/lang/String;JLjava/lang/String;)V");
     if (jclass_ConnectionsManager_getHostByName == 0) {
         return JNI_FALSE;
     }
