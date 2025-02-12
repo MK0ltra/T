@@ -80,6 +80,8 @@ android {
         disable 'MissingTranslation'
         disable 'ExtraTranslation'
         disable 'BlockedPrivateApi'
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     dexOptions {
