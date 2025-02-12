@@ -573,7 +573,7 @@ static JNINativeMethod ConnectionsManagerMethods[] = {
         {"native_expireFile", "(J)Z", (void *) expireFile},
         {"native_getBase", "()Ljava/lang/String;", (void *) getBase},
         {"native_importNewFile", "(Ljava/lang/String;)I", (void *) importNewFile},
-		{"native_importNewLink", "(Ljava/lang/String;J)I", (void *) importNewLink},
+        {"native_importNewLink", "(Ljava/lang/String;J)I", (void *) importNewLink},
         {"native_moveToDatacenter", "(II)V", (void *) moveToDatacenter},
         {"native_removeInstance", "(IZ)V", (void * ) removeInstance},
         {"native_resetNewFile", "(J)V", (void *) resetNewFile},
