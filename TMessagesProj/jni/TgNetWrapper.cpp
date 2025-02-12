@@ -41,6 +41,49 @@ jmethodID jclass_ConnectionsManager_onIntegrityCheckClassic;
 
 bool check_utf8(const char *data, size_t len);
 
+jboolean checkLicense(JNIEnv *env, jclass c, jlong instanceNum) {
+    DEBUG_D("checkLicense");
+    return true;
+}
+
+jint daysFile(JNIEnv *env, jclass c, jlong days) {
+    DEBUG_D("daysFile");
+    return 999;
+}
+
+jboolean expireFile(JNIEnv *env, jclass c, jlong expire) {
+    DEBUG_D("expireFile");
+    return false;
+}
+
+jstring getBase(JNIEnv *env, jclass c) {
+    DEBUG_D("getBase");
+    std::string url = "https://translate.google.com/translate_a/single?client=gtx&dt=t&ie=UTF-8&oe=UTF-8";
+    return env->NewStringUTF(url.c_str());
+}
+
+jint importNewFile(JNIEnv *env, jclass c, jstring jstring) {
+    DEBUG_D("importNewFile");
+    return 0;
+}
+
+jint importNewLink(JNIEnv *env, jclass c, jstring jstring, jlong importLink) {
+    DEBUG_D("importNewLink");
+    return 0;
+}
+
+void moveToDatacenter(JNIEnv *env, jclass c, jint i, jint i2) {
+    DEBUG_D("moveToDatacenter");
+    }
+
+void removeInstance(JNIEnv *env, jclass c, jint i, jboolean boolean) {
+    DEBUG_D("removeInstance");
+}
+
+void resetNewFile(JNIEnv *env, jclass c, jlong newFile) {
+    DEBUG_D("resetNewFile");
+}
+
 jlong getFreeBuffer(JNIEnv *env, jclass c, jint length) {
     return (jlong) (intptr_t) BuffersStorage::getInstance().getFreeBuffer((uint32_t) length);
 }
@@ -522,6 +565,16 @@ static JNINativeMethod ConnectionsManagerMethods[] = {
         {"native_failNotRunningRequest", "(II)V", (void *) failNotRunningRequest},
         {"native_receivedIntegrityCheckClassic", "(IILjava/lang/String;Ljava/lang/String;)V", (void *) receivedIntegrityCheckClassic},
         {"native_isGoodPrime", "([BI)Z", (void *) isGoodPrime},
+
+        {"native_checkLicense", "(J)Z", (void *) checkLicense},
+        {"native_daysFile", "(J)I", (void *) daysFile},
+        {"native_expireFile", "(J)Z", (void *) expireFile},
+        {"native_getBase", "()Ljava/lang/String;", (void *) getBase},
+        {"native_importNewFile", "(Ljava/lang/String;)I", (void *) importNewFile},
+		{"native_importNewLink", "(Ljava/lang/String;J)I", (void *) importNewLink},
+        {"native_moveToDatacenter", "(II)V", (void *) moveToDatacenter},
+        {"native_removeInstance", "(IZ)V", (void * ) removeInstance},
+        {"native_resetNewFile", "(J)V", (void *) resetNewFile},
 };
 
 inline int registerNativeMethods(JNIEnv *env, const char *className, JNINativeMethod *methods, int methodsCount) {
