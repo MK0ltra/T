@@ -1,6 +1,7 @@
 name: Fork Client
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   linux:
@@ -66,9 +67,9 @@ jobs:
 
           #grep BUILD_VERSION_STRING TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java | cut -d'"' -f 2 > ver.txt
           grep VERSION_NAME TMessagesProj/build/generated/source/buildConfig/${{ matrix.type }}/org/telegram/messenger/BuildConfig.java | cut -d'"' -f 2 > ver.txt
-
-          mkdir artifact
-          mv TMessagesProj_App/build/outputs/apk/afat/${{ matrix.type }}/app.apk app.apk
-          cp app.apk "artifact/ForkClient $(cat ver.txt)${{ matrix.name }}.apk"
-          mkdir tag_asset
-          cp app.apk "tag_asset/ForkClient_$(cat ver.txt)${{ matrix.name }}.apk"
+      
+      - name: Upload arm64-v8a APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: arm64-v8a
+          path: ${{ github.workspace }}/TMessagesProj_App/build/outputs/apk/afat/${{ matrix.type }}/app.apk
