@@ -59,7 +59,7 @@ jboolean expireFile(JNIEnv *env, jclass c, jlong expire) {
 
 jstring getBase(JNIEnv *env, jclass c) {
     DEBUG_D("getBase");
-    std::string url = "https://translate.google.com/translate_a/single?client=gtx&dt=t&ie=UTF-8&oe=UTF-8";
+    std::string url = "https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&ie=UTF-8&oe=UTF-8";
     return env->NewStringUTF(url.c_str());
 }
 
